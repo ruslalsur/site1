@@ -1,7 +1,3 @@
-<?php
-var_dump($model->getAttributes());
-?>
-
 <?php $activeForm = \yii\bootstrap\ActiveForm::begin()?>
     <?=$activeForm->field($model, 'title');?>
     <?=$activeForm->field($model, 'description')->textarea();?>
