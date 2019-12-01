@@ -14,6 +14,14 @@ class CreateAction extends Action
         $activityModel = new $this->classEntity;
         $activityModel->title = 'Заголовок из CreateAction';
 
+        if (\Yii::$app->request->isPost) {
+            $activityModel->load(\Yii::$app->request->post());
+
+            if (\Yii::$app->activity->createActivity($activityModel)) {
+                return $this->controller->redirect('/');
+            }
+        }
+
         return $this->controller->render('create-view', ['model' => $activityModel]);
     }
 

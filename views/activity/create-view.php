@@ -1,3 +1,4 @@
+<h1>Create view</h1>
 <?php $activeForm = \yii\bootstrap\ActiveForm::begin()?>
     <?=$activeForm->field($model, 'title');?>
     <?=$activeForm->field($model, 'description')->textarea();?>
