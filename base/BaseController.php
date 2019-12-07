@@ -14,5 +14,12 @@ class BaseController extends Controller
         return parent::beforeAction($action);
     }
 
+    public function afterAction($action, $result)
+    {
+        \Yii::$app->session->setFlash('prev_page', \Yii::$app->request->absoluteUrl);
+
+        return parent::afterAction($action, $result);
+    }
+
 
 }
