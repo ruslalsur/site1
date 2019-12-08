@@ -17,6 +17,7 @@ class ActivityModel extends Model
     public $emailRepeat;
     public $userNotification;
     public $iteratorType;
+    public $file;
     const REPEAT_TYPE = [
         0 => 'ежежневно',
         1 => 'еженежельно'
@@ -48,7 +49,8 @@ class ActivityModel extends Model
             ['iteratorType', 'in', 'range' => array_keys(self::REPEAT_TYPE)],
 //            ['title', 'myValidateFunction'],
             ['title', MyTitleValidator::class, 'exceptionList' => ['admin', 'админ', 'шаурма']],
-            ['title', 'match', 'pattern' => '/([A-Za-z-]+)/', 'message' => 'только буквы']
+            ['title', 'match', 'pattern' => '/([A-Za-z-]+)/', 'message' => 'только буквы'],
+            ['file', 'file', 'extensions' => ['jpg', 'png']],
         ];
     }
 

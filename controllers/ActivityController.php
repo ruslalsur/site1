@@ -35,7 +35,7 @@ class ActivityController extends BaseController
             }
 
             if (\Yii::$app->activity->createActivity($activityModel)) {
-//                return $this->redirect('/');
+                return $this->render('info-view', ['model' => $activityModel]);
             }
         }
 
