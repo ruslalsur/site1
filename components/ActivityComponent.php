@@ -41,13 +41,17 @@ class ActivityComponent extends Component
         return false;
     }
 
-    private function saveFile(UploadedFile $file): ?string {
-         if ($file->saveAs($this->genFilePath() . DIRECTORY_SEPARATOR . $this->genFileName($file))) {
-             return $this->genFileName($file);
-         }
-         else  {
-             return null;
-         }
+    private function saveFile(UploadedFile $file): ?string
+    {
+        $path = $this->genFilePath();
+        $fileName = $this->genFileName($file);
+        $path .= DIRECTORY_SEPARATOR . $fileName;
+
+        if ($file->saveAs($path)) {
+            return $fileName;
+        } else {
+            return null;
+        }
     }
 
     private function genFilePath(): string
@@ -61,5 +65,4 @@ class ActivityComponent extends Component
     {
         return time() . '_' . $file->getBaseName() . '_' . $file->getExtension();
     }
-
 }
