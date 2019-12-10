@@ -12,7 +12,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-        'activity' => ['class' => \app\components\ActivityComponent::class,
+        'activityComp' => ['class' => \app\components\ActivityComponent::class,
             'classEntity' => \app\models\ActivityModel::class],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

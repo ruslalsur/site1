@@ -36,7 +36,6 @@ class ActivityComponent extends Component
                     $model->file = $file;
                 }
             }
-
             return true;
         }
         return false;
