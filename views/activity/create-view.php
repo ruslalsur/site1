@@ -8,7 +8,7 @@
 <?= $activeForm->field($model, 'userNotification')->checkbox(); ?>
 <?= $activeForm->field($model, 'emailRepeat'); ?>
 <?= $activeForm->field($model, 'iteratorType')->dropDownList($model::REPEAT_TYPE); ?>
-<?= $activeForm->field($model, 'file')->fileInput(); ?>
+<?= $activeForm->field($model, 'files[]')->fileInput(['multiple' => true]); ?>
 <div>
     <input class="btn btn-danger" type="submit" value="Создать">
 </div>
