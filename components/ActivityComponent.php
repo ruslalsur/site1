@@ -32,15 +32,12 @@ class ActivityComponent extends Component
 
         if ($model->validate()) {
             if ($model->files) {
-                var_dump($model->files);
                 foreach ($model->files as $fileIndex => $file) {
                     if ($file = $this->saveFile($file)) {
                         $model->files[$fileIndex] = $file;
                     }
                 }
             }
-            echo '<br><hr><br>';
-            var_dump($model->files);
             return true;
         }
         return false;
