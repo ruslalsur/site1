@@ -23,6 +23,8 @@ class ActivityModel extends Model
         1 => 'еженежельно'
     ];
 
+    //изменение в новой ветке2
+
     public function beforeValidate()
     {
         $date = \DateTime::createFromFormat('d.m.Y', $this->deadline);
