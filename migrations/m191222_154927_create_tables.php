@@ -16,11 +16,20 @@ class m191222_154927_create_tables extends Migration
             'id' => $this->primaryKey(),
             'title' => $this->string(150)->notNull(),
             'description' => $this->text(),
-            'deadline' =>  $this->date()->notNull(),
+            'deadline' => $this->date()->notNull(),
             'isBlocked' => $this->tinyInteger()->notNull()->defaultValue(0),
             'email' => $this->string(150),
             'userNotification' => $this->tinyInteger()->notNull()->defaultValue(0),
-            'createAt' =>$this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP')
+            'createAt' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP')
+        ]);
+
+        $this->createTable('users', [
+            'id' => $this->primaryKey(),
+            'email' => $this->string()->notNull(),
+            'password_hash' => $this->string(300)->notNull(),
+            'token' => $this->string(150),
+            'auth_key' => $this->string(150),
+            'createAt' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP')
         ]);
     }
 
@@ -29,7 +38,8 @@ class m191222_154927_create_tables extends Migration
      */
     public function safeDown()
     {
-       $this->dropTable('activity');
+        $this->dropTable('activity');
+        $this->dropTable('users');
     }
 
     /*
