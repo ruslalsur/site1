@@ -14,5 +14,21 @@
             ?>
         </pre>
     </div>
+
+    <div class="col-md-6">
+        <pre>
+            <?php
+            print_r($act1);
+            ?>
+        </pre>
+    </div>
+
+    <div class="col-md-6">
+        <pre>
+            <?php
+            print_r($scalar);
+            ?>
+        </pre>
+    </div>
 </div>
 
