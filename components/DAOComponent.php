@@ -7,6 +7,7 @@ namespace app\components;
 use app\base\BaseController;
 use yii\base\Component;
 use yii\db\Connection;
+use yii\db\Exception;
 use yii\db\Query;
 
 class DAOComponent extends Component
@@ -45,4 +46,41 @@ class DAOComponent extends Component
             ->scalar();
     }
 
+    public function transactionTest() {
+        //автоиатический откат или завершение транзакции
+        $this->getConnection()->transaction(function() {
+            $this->getConnection()->createCommand()->insert('activity',
+                ['title' => 'title' . mt_rand(100, 1000),
+                    'user_id' => 1,
+                    'deadline' => date('Y-m-d')])->execute();
+
+//            throw new \Exception();
+
+            $this->getConnection()->createCommand()->insert('activity',
+                ['title' => 'title' . mt_rand(100, 1000),
+                    'user_id' => 1,
+                    'deadline' => date('Y-m-d')])->execute();
+        });
+
+        //ручной откат илм завершение транзакции
+        $transaction = $this->getConnection()->beginTransaction();
+        try {
+            $this->getConnection()->createCommand()->insert('activity',
+                ['title' => 'title' . mt_rand(100, 1000),
+                    'user_id' => 1,
+                    'deadline' => date('Y-m-d')])->execute();
+
+//            throw new \Exception();
+
+            $this->getConnection()->createCommand()->insert('activity',
+                ['title' => 'title' . mt_rand(100, 1000),
+                    'user_id' => 1,
+                    'deadline' => date('Y-m-d')])->execute();
+
+            $transaction->commit();
+
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+        }
+    }
 }

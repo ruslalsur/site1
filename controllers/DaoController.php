@@ -10,6 +10,7 @@ class DaoController extends BaseController
 {
     public function actionIndex() {
         $dao = \Yii::$app->dao;
+        $dao->transactionTest();
 
         $users = $dao->getUsers();
         $userActivities = $dao->getUserActivities(\Yii::$app->request->get('user', 1));
