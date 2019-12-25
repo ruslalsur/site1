@@ -30,5 +30,15 @@
             ?>
         </pre>
     </div>
+
+    <div class="col-md-6">
+        <pre>
+            <?php
+            foreach ($reader as $value) {
+                print_r($value);
+            }
+            ?>
+        </pre>
+    </div>
 </div>
 

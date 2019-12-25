@@ -83,4 +83,9 @@ class DAOComponent extends Component
             $transaction->rollBack();
         }
     }
+
+    public function getActivitiesReader() {
+        $queryBuilder = new Query();
+        return $queryBuilder->from('activity')->createCommand()->query();
+    }
 }
