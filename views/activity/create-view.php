@@ -12,5 +12,5 @@
 <div>
     <input class="btn btn-danger" type="submit" value="Создать">
 </div>
-<?php $activeForm = \yii\bootstrap\ActiveForm::end() ?>
+<?php \yii\bootstrap\ActiveForm::end() ?>
 

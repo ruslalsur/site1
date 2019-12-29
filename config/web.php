@@ -12,6 +12,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'auth' => ['class' => \app\components\AuthComponent::class],
         'dao' => ['class' => \app\components\DAOComponent::class],
         'activityComp' => ['class' => \app\components\ActivityComponent::class,
             'classEntity' => \app\models\ActivityModel::class],
