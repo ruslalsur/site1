@@ -5,6 +5,7 @@ namespace app\controllers\actions\activity;
 
 
 use yii\base\Action;
+use yii\web\HttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -13,6 +14,10 @@ class CreateAction extends Action
     public $classEntity;
 
     public function run() {
+        if (!\Yii::$app->rbac->canCreateActivity()) {
+            throw new HttpException('403', 'не авторизовано');
+        }
+
         //создание компонента статически(по зарегистрированному в config/web)
         $activityModel = \Yii::$app->activityComp->getEntity();
 

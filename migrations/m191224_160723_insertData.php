@@ -15,13 +15,13 @@ class m191224_160723_insertData extends Migration
         $this->insert('users',[
             'id' => 1,
             'email' => 'user1@mail.ru',
-            'password_hash' => '1234'
+            'password_hash' => \Yii::$app->security->generatePasswordHash('123456')
         ]);
 
         $this->insert('users',[
             'id' => 2,
             'email' => 'user2@mail.ru',
-            'password_hash' => '4321'
+            'password_hash' => \Yii::$app->security->generatePasswordHash('123456')
         ]);
 
         $this->batchInsert('activity', ['title', 'user_id', 'deadline', 'userNotification', 'email'], [

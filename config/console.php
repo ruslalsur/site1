@@ -14,6 +14,7 @@ $config = [
         '@tests' => '@app/tests',
     ],
     'components' => [
+        'authManager' => ['class' => \yii\rbac\DbManager::class],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -26,6 +27,11 @@ $config = [
             ],
         ],
         'db' => $db,
+        'user' => [
+            'class' => 'yii\web\User',
+            'identityClass' => 'app\models\Users',
+            'enableAutoLogin' => true,
+        ],
     ],
     'params' => $params,
     /*

@@ -6,6 +6,7 @@ namespace app\components;
 
 use app\models\Users;
 use yii\base\Component;
+use yii\base\Exception;
 use yii\web\IdentityInterface;
 
 class AuthComponent extends Component
@@ -24,7 +25,10 @@ class AuthComponent extends Component
 
     private function genPasswordHash(string $password): string
     {
-        return \Yii::$app->security->generatePasswordHash($password);
+        try {
+            return \Yii::$app->security->generatePasswordHash($password);
+        } catch (Exception $e) {
+        }
     }
 
     private function genAuthKey(): string {
@@ -44,7 +48,7 @@ class AuthComponent extends Component
         if (!$this->validatePassword($model->password, $userIdentity->password_hash)) {
             $model->addError('password', 'ошибка логина или пароля');
             return false;
-        };
+        }
 
         return \Yii::$app->user->login($userIdentity, 3600);
 

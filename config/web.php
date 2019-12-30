@@ -12,6 +12,8 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'rbac' => ['class' => \app\components\RbacComponent::class],
+        'authManager' => ['class' => \yii\rbac\DbManager::class],
         'auth' => ['class' => \app\components\AuthComponent::class],
         'dao' => ['class' => \app\components\DAOComponent::class],
         'activityComp' => ['class' => \app\components\ActivityComponent::class,
@@ -24,6 +26,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
+            'class' => 'yii\web\User',
             'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
         ],
