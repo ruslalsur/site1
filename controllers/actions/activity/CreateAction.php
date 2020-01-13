@@ -15,7 +15,8 @@ class CreateAction extends Action
 
     public function run() {
         if (!\Yii::$app->rbac->canCreateActivity()) {
-            throw new HttpException('403', 'не авторизовано');
+            return $this->controller->redirect(['/auth/sign-in']);
+//            throw new HttpException('403', 'не авторизовано');
         }
 
         //создание компонента статически(по зарегистрированному в config/web)

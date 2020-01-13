@@ -13,7 +13,8 @@ class BaseController extends Controller
     {
         \Yii::warning($action->id);
         if (\Yii::$app->user->isGuest) {
-            throw new HttpException('401', 'авторизуйтесь');
+            return $this->redirect(['/auth/sign-in']);
+//            throw new HttpException('401', 'авторизуйтесь');
         }
         return parent::beforeAction($action);
     }
