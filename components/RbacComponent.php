@@ -52,21 +52,24 @@ class RbacComponent extends Component
         $authManager->assign($roleUser, 4);
     }
 
-    public function assignmentUserRole($id) {
+    public function assignmentUserRole($id)
+    {
         $authManager = $this->getAuthManager();
         $authManager->assign($authManager->getRole('user'), $id);
     }
 
-    public function canCreateActivity(): bool {
+    public function canCreateActivity(): bool
+    {
         return \Yii::$app->user->can('createActivityPermission');
     }
 
-    public function canEditActivity(ActivityModel $activity) {
+    public function canEditActivity(ActivityModel $activity)
+    {
         if (\Yii::$app->user->can('editActivityAllPermission')) {
             return true;
         }
 
-        if (\Yii::$app->user->can('editActivityOwnerPermission', ['activity'=>$activity])) {
+        if (\Yii::$app->user->can('editActivityOwnerPermission', ['activity' => $activity])) {
             return true;
         }
         return false;

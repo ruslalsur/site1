@@ -13,7 +13,8 @@ class CreateAction extends Action
 {
     public $classEntity;
 
-    public function run() {
+    public function run()
+    {
         if (!\Yii::$app->rbac->canCreateActivity()) {
             return $this->controller->redirect(['/auth/sign-in']);
 //            throw new HttpException('403', 'не авторизовано');
