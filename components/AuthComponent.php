@@ -20,7 +20,12 @@ class AuthComponent extends Component
         $model->password_hash = $this->genPasswordHash($model->password);
         $model->auth_key = $this->genAuthKey();
 
-        return $model->save() ? true : false;
+        if ($model->save()) {
+            \Yii::$app->rbac->assignmentUserRole($model->id);
+            return true;
+        }
+        return false;
+
     }
 
     private function genPasswordHash(string $password): string

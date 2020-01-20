@@ -53,7 +53,8 @@ class RbacComponent extends Component
     }
 
     public function assignmentUserRole($id) {
-
+        $authManager = $this->getAuthManager();
+        $authManager->assign($authManager->getRole('user'), $id);
     }
 
     public function canCreateActivity(): bool {
