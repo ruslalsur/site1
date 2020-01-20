@@ -6,6 +6,7 @@ namespace app\controllers;
 
 use app\base\BaseController;
 use app\controllers\actions\activity\CreateAction;
+use app\controllers\actions\activity\ViewAction;
 use app\models\ActivityModel;
 
 class ActivityController extends BaseController
@@ -32,7 +33,8 @@ class ActivityController extends BaseController
     public function actions()
     {
         return [
-            'create' => ['class' => CreateAction::class, 'classEntity' => ActivityModel::class]
+            'create' => ['class' => CreateAction::class, 'classEntity' => ActivityModel::class],
+            'view' => ['class' => ViewAction::class]
         ];
     }
 }

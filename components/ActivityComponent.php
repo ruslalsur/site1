@@ -67,4 +67,9 @@ class ActivityComponent extends Component
     {
         return time() . '_' . $file->getBaseName() . '_' . $file->getExtension();
     }
+
+    function getNameTableDb()
+    {
+        return 'activity';
+    }
 }

@@ -7,15 +7,15 @@ namespace app\models;
 use app\models\my_validators\MyTitleValidator;
 use yii\base\Model;
 
-class ActivityModel extends Model
+class ActivityModel extends ActivityBase
 {
-    public $title;
-    public $description;
-    public $deadline;
-    public $isBlocked;
-    public $email;
+//    public $title;
+//    public $description;
+//    public $deadline;
+//    public $isBlocked;
+//    public $email;
     public $emailRepeat;
-    public $userNotification;
+//    public $userNotification;
     public $iteratorType;
     public $files;
     const REPEAT_TYPE = [
@@ -33,6 +33,11 @@ class ActivityModel extends Model
         }
 
         return parent::beforeValidate();
+    }
+
+    public static function tableName()
+    {
+        return 'activity';
     }
 
     public function rules()

@@ -4,6 +4,8 @@
 namespace app\components;
 
 
+use app\models\ActivityModel;
+use app\rules\OwnerActivityRule;
 use yii\base\Component;
 
 class RbacComponent extends Component
@@ -26,12 +28,15 @@ class RbacComponent extends Component
         $roleUser->description = 'Роль пользователя';
         $authManager->add($roleUser);
 
-        $createActivityPermission = $authManager->createPermission('createActivity');
+        $createActivityPermission = $authManager->createPermission('createActivityPermission');
         $createActivityPermission->description = 'Разрешение на создание активности';
         $authManager->add($createActivityPermission);
 
         $editActivityOwnerPermission = $authManager->createPermission('editActivityOwnerPermission');
         $editActivityOwnerPermission->description = 'Разрешение на редактирование своей активности';
+        $rule = new OwnerActivityRule();
+        $editActivityOwnerPermission->ruleName = $rule->name;
+        $authManager->add($rule);
         $authManager->add($editActivityOwnerPermission);
 
         $editActivityAllPermission = $authManager->createPermission('editActivityAllPermission');
@@ -47,7 +52,22 @@ class RbacComponent extends Component
         $authManager->assign($roleUser, 4);
     }
 
+    public function assignmentUserRole($id) {
+
+    }
+
     public function canCreateActivity(): bool {
-        return \Yii::$app->user->can('createActivity');
+        return \Yii::$app->user->can('createActivityPermission');
+    }
+
+    public function canEditActivity(ActivityModel $activity) {
+        if (\Yii::$app->user->can('editActivityAllPermission')) {
+            return true;
+        }
+
+        if (\Yii::$app->user->can('editActivityOwnerPermission', ['activity'=>$activity])) {
+            return true;
+        }
+        return false;
     }
 }

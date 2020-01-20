@@ -45,6 +45,7 @@ class AuthComponent extends Component
         }
 
         $userIdentity = $this->getUserByEmail($model->email);
+
         if (!$this->validatePassword($model->password, $userIdentity->password_hash)) {
             $model->addError('password', 'ошибка логина или пароля');
             return false;

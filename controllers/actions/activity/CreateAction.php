@@ -21,6 +21,7 @@ class CreateAction extends Action
 
         //создание компонента статически(по зарегистрированному в config/web)
         $activityModel = \Yii::$app->activityComp->getEntity();
+        $tableDb = \Yii::$app->activityComp->getNameTableDb();
 
 //        //создание компонента динамически
 //        $activityComponent = \Yii::createObject(['class' => ActivityComponent::class,
@@ -41,6 +42,9 @@ class CreateAction extends Action
 
             //обращение к статически созданному компаненту
             if (\Yii::$app->activityComp->createActivity($activityModel)) {
+                \Yii::$app->dao->insertActivityIntoDb($activityModel, $tableDb);
+
+                return $this->controller->redirect(['/activity/view', 'id' => $activityModel->id]);
 
 //            //обращение к динамически созданному компаненту
 //            if ($activityComponent->createActivity($activityModel)) {

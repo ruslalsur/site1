@@ -38,6 +38,22 @@ class DAOComponent extends Component
             ->one();
     }
 
+    public function insertActivityIntoDb(&$model, $tableDb)
+    {
+        $this->getConnection()->createCommand()->insert($tableDb, [
+            'title' => $model->title,
+            'description' => $model->description,
+            'deadline' => $model->deadline,
+            'isBlocked' => $model->isBlocked,
+            'email' => $model->email,
+            'userNotification' => $model->userNotification,
+            'user_id' => \Yii::$app->user->getId(),
+            'createAt' => date('Y-m-d')])
+            ->execute();
+
+        $model->id=$this->getConnection()->lastInsertID;
+    }
+
     public function getCountActivities() {
         $qBuilder = new Query();
 
