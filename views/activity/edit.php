@@ -1,4 +1,4 @@
-<h1>Create view</h1>
+<h1>Edit activity</h1>
 <?php
 
 use yii\bootstrap\ActiveForm;
@@ -15,7 +15,7 @@ $activeForm = ActiveForm::begin()
 <?= $activeForm->field($model, 'iteratorType')->dropDownList($model::REPEAT_TYPE); ?>
 <?= $activeForm->field($model, 'files[]')->fileInput(['multiple' => true]); ?>
 <div>
-    <input class="btn btn-danger" type="submit" value="Создать">
+    <input class="btn btn-danger" type="submit" value="Изменить">
 </div>
 <?php ActiveForm::end() ?>
 

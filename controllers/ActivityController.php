@@ -37,4 +37,24 @@ class ActivityController extends BaseController
             'view' => ['class' => ViewAction::class]
         ];
     }
+
+    public function actionEdit($id)
+    {
+        /** @var ActivityModel $activity */
+        $activity = \Yii::$app->activityComp->getActivityById($id);
+
+        if (!$activity) {
+            throw new \HttpException(404, 'activity bot found');
+        }
+
+        if (\Yii::$app->request->isPost) {
+            $activity->load(\Yii::$app->request->post());
+            if (\Yii::$app->activityComp->editActivity($activity)) {
+                return $this->redirect(['/activity/view', 'id' => $activity->id]);
+            }
+        }
+
+
+        return $this->render('edit', ['model' => $activity]);
+    }
 }

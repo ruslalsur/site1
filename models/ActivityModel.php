@@ -42,7 +42,7 @@ class ActivityModel extends ActivityBase
 
     public function rules()
     {
-        return [
+        return array_merge([
             [['title', 'email'], 'trim'],
             [['title', 'deadline'], 'required', 'message' => 'переопределенное сообщение  об ошибке'],
             ['deadline', 'date', 'format' => 'php:Y-m-d'],
@@ -58,7 +58,7 @@ class ActivityModel extends ActivityBase
             ['title', MyTitleValidator::class, 'exceptionList' => ['admin', 'админ', 'шаурма']],
             ['title', 'match', 'pattern' => '/([A-Za-z-]+)/', 'message' => 'только буквы'],
             ['files', 'file', 'extensions' => ['jpg', 'png'], 'maxFiles' => 4],
-        ];
+        ], parent::rules());
     }
 
 //    public function myValidateFunction($attr) {

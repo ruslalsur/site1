@@ -43,7 +43,7 @@ class CreateAction extends Action
 
             //обращение к статически созданному компаненту
             if (\Yii::$app->activityComp->createActivity($activityModel)) {
-                \Yii::$app->dao->insertActivityIntoDb($activityModel, $tableDb);
+//                \Yii::$app->dao->insertActivityIntoDb($activityModel, $tableDb);
 
                 return $this->controller->redirect(['/activity/view', 'id' => $activityModel->id]);
 

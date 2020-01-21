@@ -5,6 +5,7 @@ namespace app\components;
 
 
 use app\models\ActivityModel;
+use phpDocumentor\Reflection\Types\Boolean;
 use yii\base\Component;
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
@@ -26,11 +27,31 @@ class ActivityComponent extends Component
         return new $this->classEntity();
     }
 
+    /**
+     * @param $id
+     * @return ActivityModel|null
+     */
+    public function getActivityById($id): ?ActivityModel
+    {
+        return ActivityModel::find()->andWhere(['id' => $id])->one();
+    }
+
+    public function editActivity(ActivityModel &$activity): bool
+    {
+        if (!$activity->validate()) {
+            return false;
+        }
+        return $activity->save();
+//        $activity->updateAttributes(['title', 'description']);
+//        return true;
+    }
+
     public function createActivity(ActivityModel &$model): bool
     {
         $model->files = UploadedFile::getInstances($model, 'files');
+        $model->user_id = \Yii::$app->user->getId();
 
-        if ($model->validate()) {
+        if ($model->save()) {
             if ($model->files) {
                 foreach ($model->files as $fileIndex => $file) {
                     if ($file = $this->saveFile($file)) {
