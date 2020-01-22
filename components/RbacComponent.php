@@ -49,7 +49,7 @@ class RbacComponent extends Component
         $authManager->addChild($roleAdmin, $editActivityAllPermission);
 
         $authManager->assign($roleAdmin, 3);
-        $authManager->assign($roleUser, 4);
+//        $authManager->assign($roleUser, 4);
     }
 
     public function assignmentUserRole($id)
