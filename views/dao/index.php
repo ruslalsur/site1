@@ -1,15 +1,13 @@
 <div class="row">
-    <div class="col-md-6">
-        <pre>
-            <?php
-            print_r($users);
-            ?>
-        </pre>
-    </div>
+    <?php
+    /** @var array $users */
+    echo \app\widgets\daoUserWidget\DaoUserWidget::widget(['user' => $users]);
+    ?>
 
     <div class="col-md-6">
         <pre>
             <?php
+            /** @var $activities array */
             print_r($activities);
             ?>
         </pre>

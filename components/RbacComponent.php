@@ -6,13 +6,14 @@ namespace app\components;
 
 use app\models\ActivityModel;
 use app\rules\OwnerActivityRule;
+use Yii;
 use yii\base\Component;
 
 class RbacComponent extends Component
 {
     public function getAuthManager()
     {
-        return \Yii::$app->authManager;
+        return Yii::$app->authManager;
     }
 
     public function genRbac()
@@ -60,16 +61,16 @@ class RbacComponent extends Component
 
     public function canCreateActivity(): bool
     {
-        return \Yii::$app->user->can('createActivityPermission');
+        return Yii::$app->user->can('createActivityPermission');
     }
 
     public function canEditActivity(ActivityModel $activity)
     {
-        if (\Yii::$app->user->can('editActivityAllPermission')) {
+        if (Yii::$app->user->can('editActivityAllPermission')) {
             return true;
         }
 
-        if (\Yii::$app->user->can('editActivityOwnerPermission', ['activity' => $activity])) {
+        if (Yii::$app->user->can('editActivityOwnerPermission', ['activity' => $activity])) {
             return true;
         }
         return false;
