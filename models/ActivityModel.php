@@ -4,9 +4,16 @@
 namespace app\models;
 
 
+use app\behaviors\DateCreateBehavior;
+use app\behaviors\LogBehavior;
 use app\models\my_validators\MyTitleValidator;
 use yii\base\Model;
 
+/**
+ * Class ActivityModel
+ * @package app\models
+ * @mixin DateCreateBehavior
+ */
 class ActivityModel extends ActivityBase
 {
 //    public $title;
@@ -23,7 +30,15 @@ class ActivityModel extends ActivityBase
         1 => 'еженежельно'
     ];
 
-    //изменение в новой ветке2
+    //подключение поведения статически
+    public function behaviors()
+    {
+        return [
+            ['class' => DateCreateBehavior::class, 'attributeName' => 'createAt'],
+            LogBehavior::class
+
+        ];
+    }
 
     public function beforeValidate()
     {

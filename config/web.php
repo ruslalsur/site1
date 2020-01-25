@@ -11,6 +11,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'as logit' => ['class'=> \app\behaviors\LogBehavior::class],
     'components' => [
         'rbac' => ['class' => \app\components\RbacComponent::class],
         'authManager' => ['class' => \yii\rbac\DbManager::class],
