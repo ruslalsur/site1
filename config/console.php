@@ -13,6 +13,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
+    'as logit' => ['class'=> \app\behaviors\LogBehavior::class],
     'components' => [
         'authManager' => ['class' => \yii\rbac\DbManager::class],
         'cache' => [

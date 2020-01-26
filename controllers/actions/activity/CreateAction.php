@@ -50,7 +50,7 @@ class CreateAction extends Action
 //            //обращение к динамически созданному компаненту
 //            if ($activityComponent->createActivity($activityModel)) {
 
-                return $this->controller->renderPartial('info-view', ['model' => $activityModel]);
+//                return $this->controller->renderPartial('info-view', ['model' => $activityModel]);
             }
         }
         return $this->controller->render('create-view', ['model' => $activityModel]);

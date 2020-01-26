@@ -4,6 +4,7 @@
 namespace app\components;
 
 
+use app\behaviors\LogBehavior;
 use app\models\ActivityModel;
 use phpDocumentor\Reflection\Types\Boolean;
 use yii\base\Component;
@@ -13,6 +14,15 @@ use yii\web\UploadedFile;
 class ActivityComponent extends Component
 {
     public $classEntity;
+    const EVENT_CUSTOM = 'custom_event';
+
+    public function behaviors()
+    {
+        return [
+            LogBehavior::class
+        ];
+    }
+
 
     public function init()
     {
@@ -52,6 +62,7 @@ class ActivityComponent extends Component
         $model->user_id = \Yii::$app->user->getId();
 
         if ($model->save()) {
+            $this->trigger(self::EVENT_CUSTOM);
             if ($model->files) {
                 foreach ($model->files as $fileIndex => $file) {
                     if ($file = $this->saveFile($file)) {
