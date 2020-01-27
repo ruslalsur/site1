@@ -15,7 +15,23 @@ $config = [
     ],
     'as logit' => ['class'=> \app\behaviors\LogBehavior::class],
     'components' => [
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'enableSwiftMailerLogging'=>true,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',
+                'port' => '587',
+                'encryption' => 'tls',
+                'username' => 'rusla.sukhorukov@yandex.ru',
+                'password' => 'Zx4321cV',
+            ],
+        ],
+        'activityComp' => ['class' => \app\components\ActivityComponent::class,
+            'classEntity' => \app\models\ActivityModel::class],
         'authManager' => ['class' => \yii\rbac\DbManager::class],
+        'rbac' => ['class' => \app\components\RbacComponent::class],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

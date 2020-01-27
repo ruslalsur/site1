@@ -104,4 +104,17 @@ class ActivityComponent extends Component
     {
         return 'activity';
     }
+
+    /**
+     * @return ActivityModel [] | null
+     */
+    public function getActiveActivityTodayNotification(): array
+    {
+        $result = ActivityModel::find()->
+        andWhere('deadline<=:date', [':date' => date('Y-m-d')])->
+        andWhere(['userNotification' => 1])->
+        all();
+
+        return $result;
+    }
 }
