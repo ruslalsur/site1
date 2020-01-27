@@ -6,6 +6,7 @@ namespace app\commands;
 
 use app\models\ActivityModel;
 use yii\console\Controller;
+use yii\helpers\Console;
 use yii\mail\MailerInterface;
 
 class NotificationController extends Controller
@@ -54,9 +55,9 @@ class NotificationController extends Controller
                 send();
 
             if ($ok) {
-                echo 'отправлено ' . $activity->email . PHP_EOL;
+                echo Console::ansiFormat('отправлено ' . $activity->email . PHP_EOL, [Console::FG_GREEN]);
             } else {
-                echo 'не отправлено ' . $activity->email . PHP_EOL;
+                echo Console::ansiFormat('не отправлено ' . $activity->email . PHP_EOL, [Console::FG_RED]);
             }
         }
     }
