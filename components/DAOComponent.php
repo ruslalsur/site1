@@ -64,7 +64,7 @@ class DAOComponent extends Component
 
         return $qBuilder->from('activity')
             ->select('count(id)')
-            ->cache(20, new ExpressionDependency(['expression'=>'1=1']))
+            ->cache(20)
             ->scalar($this->getConnection());
     }
 

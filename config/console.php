@@ -33,7 +33,8 @@ $config = [
         'authManager' => ['class' => \yii\rbac\DbManager::class],
         'rbac' => ['class' => \app\components\RbacComponent::class],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\MemCache',
+            'useMemcached' => true
         ],
         'log' => [
             'targets' => [

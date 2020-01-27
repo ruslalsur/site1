@@ -5,9 +5,19 @@ namespace app\controllers;
 
 
 use app\base\BaseController;
+use yii\filters\PageCache;
 
 class DaoController extends BaseController
 {
+    public function behaviors()
+    {
+        return [
+            ['class'=>PageCache::class,
+                'duration'=>10,
+                'only'=>['index']]
+        ];
+    }
+
     public function actionIndex() {
         $dao = \Yii::$app->dao;
         $dao->transactionTest();

@@ -2,9 +2,12 @@
     <?php
     /** @var array $users */
     /** @var array $activities */
-    echo \app\widgets\daoUserWidget\DaoUserWidget::widget(['user' => $users]);
-    echo \app\widgets\daoUserWidget\DaoUserWidget::widget(['user' => $activities]);
-    ?>
+    /** @var \yii\web\View $this */
+?>
+    <?php if ($this->beginCache('widget_list', ['duration'=> 30])): ?>
+    <?php echo \app\widgets\daoUserWidget\DaoUserWidget::widget(['user' => $users]); ?>
+    <?php echo \app\widgets\daoUserWidget\DaoUserWidget::widget(['user' => $activities]); ?>
+    <?php $this->endCache(); endif?>
 
     <div class="col-md-6">
         <pre>
