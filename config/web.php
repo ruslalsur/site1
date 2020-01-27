@@ -57,9 +57,13 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'activity/new' => 'activity/create',
+                'new' => 'activity/create',
+                'event/view/<id:\w+>' => 'activity/view',
+                'event/<action>' => 'activity/<action>',
+                '<controller>/<action>' => '<controller>/<action>'
             ],
         ],
-
     ],
     'params' => $params,
 ];
