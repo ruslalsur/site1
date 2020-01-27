@@ -56,7 +56,7 @@ class Users extends UsersBase implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return Users::find()->andWhere(['id'=>$id])->one();
+        return Users::find()->cache(20)->andWhere(['id'=>$id])->one();
     }
 
     /**

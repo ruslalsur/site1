@@ -23,4 +23,17 @@ class DaoController extends BaseController
 
     }
 
+    public function actionCache() {
+        \Yii::$app->cache->set('key1', 'value1');
+        if (\Yii::$app->cache->exists('key1')) {
+            $val = \Yii::$app->cache->get('key1');
+            $val2 = \Yii::$app->cache->getOrSet('key2', function () {
+                return 'value for cache';
+            });
+//            \Yii::$app->cache->flush();
+            echo $val;
+        }
+
+    }
+
 }

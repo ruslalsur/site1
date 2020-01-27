@@ -9,9 +9,9 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
-    'as logit' => ['class'=> \app\behaviors\LogBehavior::class],
+    'as logit' => ['class' => \app\behaviors\LogBehavior::class],
     'components' => [
         'rbac' => ['class' => \app\components\RbacComponent::class],
         'authManager' => ['class' => \yii\rbac\DbManager::class],
@@ -24,7 +24,8 @@ $config = [
             'cookieValidationKey' => 'iFKepGTSPlwHVtE4EHS47gNV0JZz-nzb',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\MemCache',
+            'useMemcached' => true
         ],
         'user' => [
             'class' => 'yii\web\User',

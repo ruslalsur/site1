@@ -6,6 +6,9 @@ namespace app\components;
 
 use app\base\BaseController;
 use yii\base\Component;
+use yii\caching\DbDependency;
+use yii\caching\ExpressionDependency;
+use yii\caching\TagDependency;
 use yii\db\Connection;
 use yii\db\Exception;
 use yii\db\Query;
@@ -18,12 +21,13 @@ class DAOComponent extends Component
 
     public function getUsers() {
         $sql = 'select * from users';
-        return $this->getConnection()->createCommand($sql)->queryAll();
+        return $this->getConnection()->createCommand($sql)->cache(20)->queryAll();
     }
 
     public function getUserActivities($user) {
         $sql = "select * from activity where user_id = :user";
-        return $this->getConnection()->createCommand($sql, [':user' => $user])->queryAll();
+        return $this->getConnection()->createCommand($sql, [':user' => $user])->
+        cache(20, new DbDependency(['sql'=> 'select max(id) from activity']))->queryAll();
     }
 
     public function getFirstActivity() {
@@ -34,6 +38,7 @@ class DAOComponent extends Component
             ->select(['id', 'title'])
             ->andwhere(['userNotification' => 1])
             ->limit(3)
+            ->cache(20, new TagDependency(['tags'=>'tag1']))
 //            ->createCommand()->rawSql; (SELECT `id`, `title` FROM `activity` WHERE `userNotification`=1 ORDER BY `id` DESC LIMIT 3 )
             ->one();
     }
@@ -59,7 +64,8 @@ class DAOComponent extends Component
 
         return $qBuilder->from('activity')
             ->select('count(id)')
-            ->scalar();
+            ->cache(20, new ExpressionDependency(['expression'=>'1=1']))
+            ->scalar($this->getConnection());
     }
 
     public function transactionTest() {
