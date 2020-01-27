@@ -53,7 +53,7 @@ class ActivityController extends BaseController
                 return $this->redirect(['/activity/view', 'id' => $activity->id]);
             }
         }
-
+        $this->layout = 'auth';
 
         return $this->render('edit', ['model' => $activity]);
     }
