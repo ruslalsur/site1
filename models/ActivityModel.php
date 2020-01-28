@@ -71,7 +71,7 @@ class ActivityModel extends ActivityBase
             ['iteratorType', 'in', 'range' => array_keys(self::REPEAT_TYPE)],
 //            ['title', 'myValidateFunction'],
             ['title', MyTitleValidator::class, 'exceptionList' => ['admin', 'админ', 'шаурма']],
-            ['title', 'match', 'pattern' => '/([A-Za-z-]+)/', 'message' => 'только буквы'],
+            ['title', 'match', 'pattern' => '/([A-Za-zА-Яа-я-]+)/', 'message' => 'только буквы'],
             ['files', 'file', 'extensions' => ['jpg', 'png'], 'maxFiles' => 4],
         ], parent::rules());
     }
@@ -82,15 +82,15 @@ class ActivityModel extends ActivityBase
 //        }
 //    }
 
-    public function attributeLabels()
-    {
-        return [
-            'title' => 'Заголовок',
-            'description' => 'Описание',
-            'deadline' => 'Смертельная черта',
-            'isBlocked' => 'Целый день'
-        ];
-    }
+//    public function attributeLabels()
+//    {
+//        return [
+//            'title' => 'Заголовок',
+//            'description' => 'Описание',
+//            'deadline' => 'Смертельная черта',
+//            'isBlocked' => 'Целый день'
+//        ];
+//    }
 
 
 }

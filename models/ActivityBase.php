@@ -50,15 +50,15 @@ class ActivityBase extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'description' => 'Description',
-            'deadline' => 'Deadline',
-            'isBlocked' => 'Is Blocked',
-            'email' => 'Email',
-            'userNotification' => 'User Notification',
-            'createAt' => 'Create At',
-            'user_id' => 'User ID',
+            'id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Title'),
+            'description' => Yii::t('app', 'Description'),
+            'deadline' => Yii::t('app', 'Deadline'),
+            'isBlocked' => Yii::t('app', 'Is Blocked'),
+            'email' => Yii::t('app', 'Email'),
+            'userNotification' => Yii::t('app', 'User Notification'),
+            'createAt' => Yii::t('app', 'Create At'),
+            'user_id' => Yii::t('app', 'User ID'),
         ];
     }
 
@@ -72,3 +72,4 @@ class ActivityBase extends \yii\db\ActiveRecord
         return $this->hasOne(Users::className(), ['id' => 'user_id']);
     }
 }
+

@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
@@ -52,6 +53,17 @@ $config = [
             ],
         ],
         'db' => $db,
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => \yii\i18n\PhpMessageSource::class,
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/info' => 'info.php'
+                    ]
+                ]
+            ]
+        ],
 
         'urlManager' => [
             'enablePrettyUrl' => true,

@@ -5,7 +5,7 @@ use yii\widgets\MaskedInput;
 
 ?>
 
-<h1>Create view</h1>
+<h1><?=Yii::t('app', 'Create view'); ?></h1>
 
 <?php $activeForm = ActiveForm::begin([]); ?>
 <?= $activeForm->field($model, 'title'); ?>
